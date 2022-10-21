@@ -1,0 +1,13 @@
+using DB_explorer.Model;
+using System.Linq.Expressions;
+
+namespace DB_explorer.Database
+{
+    public interface IJsonRepository
+    {
+        Task<IEnumerable<JsonResponse>> Get(Expression<Func<JsonResponse, bool>> filter = null);
+        Task<string> InsertOne(JsonResponse json);
+        Task<string> InsertMany(IEnumerable<JsonResponse> jsons);
+        Task Update(JsonResponse json);
+    }
+}

@@ -1,0 +1,3 @@
+server.name: mongodb
+server.host: "0"
+

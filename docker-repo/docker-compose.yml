@@ -1,0 +1,50 @@
+version: "3.8"
+services:
+    mongodb:
+        container_name: mongodb
+        build: 
+            context: mongodb/
+        volumes:
+            - ./data/mongodata:/data/mongodata 
+        ports:
+        - "27017:27017"
+        command: mongod
+        networks:
+        - elk
+    
+    mongo-express:
+        container_name: mongo_express
+        image: mongo-express
+        restart: always
+        ports:
+          - 8081:8081
+        depends_on:
+          - "mongodb"    
+        environment:
+        - ME_CONFIG_MONGODB_SERVER=mongodb          
+        networks:
+        - elk      
+
+    media-api:
+        container_name: DB-explorer
+        build:
+            context: ../DB-explorer/
+        volumes:
+            - "../DB-explorer/:/code/app"
+        ports:
+            - "51566:51566"
+        command: 
+            ["dotnet", "watch", "run"]
+        depends_on:
+            - "mongodb"
+        environment:
+            - ASPNETCORE_URLS=http://*:51566
+        networks:
+          - elk
+
+networks: 
+    elk:
+        driver: bridge
+
+volumes: 
+    mongodata:
