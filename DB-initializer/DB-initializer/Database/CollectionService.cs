@@ -10,23 +10,25 @@ namespace DB_initializer.Database
     public class CollectionService : ICollectionService
     {
         private readonly IMongoDbContext _context;
-
+        private string latestCollectionName;
         private readonly IImportJson _import;
         public CollectionService(IMongoDbContext context, IImportJson import)
         {
             _context = context;
             _import = import;
+            latestCollectionName = _context.CollectionName;
         }
 
         public async Task<bool> CreateCollection()
         {
             Console.WriteLine("Create collection");
-            if(!await CollectionExists(_context.CollectionName)){
-                await _context.Database.CreateCollectionAsync(_context.CollectionName);
-            }
-            else{
+            
+            if(await CollectionExists(latestCollectionName)){
                 Console.WriteLine("Collection already exists");
+                latestCollectionName += "_" +  DateTime.Now.ToString();
             }
+
+            await _context.Database.CreateCollectionAsync(latestCollectionName);
             return true;
         }
 
@@ -43,7 +45,7 @@ namespace DB_initializer.Database
             var sheets = _import.GetSpreadsheets();
             try
             {
-                await _context.Database.GetCollection<JsonResponse> (_context.CollectionName).InsertOneAsync(sheets);
+                await _context.Database.GetCollection<JsonResponse> (latestCollectionName).InsertOneAsync(sheets);
                 return true;
             }
             catch (Exception ex)
