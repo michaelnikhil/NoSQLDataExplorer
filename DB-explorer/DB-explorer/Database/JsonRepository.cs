@@ -16,7 +16,7 @@ namespace DB_explorer.Database
             Collection = _context.Database.GetCollection<JsonResponse>(_context.CollectionName);
         }
 
-        public async Task<IEnumerable<JsonResponse>> Get(Expression<Func<JsonResponse, bool>> filter = null)
+        public async Task<IEnumerable<JsonResponse>> Get(Expression<Func<JsonResponse, bool>> filter)
         {
             {
                 try
@@ -30,7 +30,7 @@ namespace DB_explorer.Database
                 catch (Exception e)
                 {
                     Console.WriteLine("Failed to get collection :" + e.Message);
-                    return default;
+                    throw new Exception("Mongodb ex " + e.Message);
                 }
             }
         }

@@ -2,6 +2,6 @@
 {
     public class Spreadsheet2 : SpreadsheetBase
     {
-        public List<Item> Items { get; set; }
+        public List<Item>? Items { get; set; }
     }
 }

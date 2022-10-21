@@ -7,8 +7,8 @@ namespace DB_explorer.Model
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
-        public Spreadsheet1 Spreadsheet1 { get; set; }
-        public Spreadsheet2 Spreadsheet2 { get; set; }
+        public string? Id { get; set; }
+        public Spreadsheet1? Spreadsheet1 { get; set; }
+        public Spreadsheet2? Spreadsheet2 { get; set; }
     }
 }
