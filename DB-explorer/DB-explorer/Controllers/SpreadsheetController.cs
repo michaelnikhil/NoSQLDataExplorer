@@ -16,7 +16,7 @@ namespace DB_explorer.Controllers
 
         // GET: Categories
         [HttpGet]
-        public async Task<IEnumerable<JsonResponse>> Get()
+        public async Task<JsonResponse> Get()
         {
             var results = await _repository.Get(null);
             return results;

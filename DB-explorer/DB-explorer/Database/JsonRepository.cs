@@ -16,7 +16,7 @@ namespace DB_explorer.Database
             Collection = _context.Database.GetCollection<JsonResponse>(_context.CollectionName);
         }
 
-        public async Task<IEnumerable<JsonResponse>> Get(Expression<Func<JsonResponse, bool>> filter)
+        public async Task<JsonResponse> Get(Expression<Func<JsonResponse, bool>> filter)
         {
             {
                 try
@@ -25,7 +25,7 @@ namespace DB_explorer.Database
                                 ? Builders<JsonResponse>.Filter.Where(filter)
                                 : Builders<JsonResponse>.Filter.Empty;
                     IFindFluent<JsonResponse, JsonResponse> entity = Collection.Find(filterDefinition);
-                    return await entity.ToListAsync();
+                    return await entity.FirstAsync();
                 }
                 catch (Exception e)
                 {

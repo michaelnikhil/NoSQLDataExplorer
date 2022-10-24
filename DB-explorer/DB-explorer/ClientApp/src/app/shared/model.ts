@@ -6,7 +6,6 @@ export interface SpreadsheetTop {
 
 export interface SpreadsheetBase {
   name: string;
-  showPage: boolean;
   description: string;
 }
 

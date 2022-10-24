@@ -15,20 +15,20 @@ export class SpreadsheetTopComponent implements OnInit {
     
   }
 
-  public db!: SpreadsheetTop[];
+  public db!: SpreadsheetTop;
   public tabs : PageDisplay[]  = [
     {'name':'spreadsheet1','showPage':true},
     {'name':'spreadsheet2','showPage':false}]
 
   
-  // constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-  //   http.get<SpreadsheetTop[]>(baseUrl + 'spreadsheet').subscribe(
-  //     {
-  //       next: (result) => this.db = result,
-  //       error: (e) => console.log(e),
-  //       complete: () => console.info('db loading complete')
-  //     })
-  // }
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    http.get<SpreadsheetTop>(baseUrl + 'spreadsheet').subscribe(
+      {
+        next: (result) => this.db = result,
+        error: (e) => console.log(e),
+        complete: () => console.info('db loading complete')
+      })
+  }
 
   onClick(pageName: string){
     this.tabs.forEach(c=>c.showPage = false);

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Spreadsheet1 } from 'src/app/shared/model';
 
 @Component({
   selector: 'app-spreadsheet1',
@@ -7,12 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class Spreadsheet1Component implements OnInit {
 
-  @Input() show= false;
+  @Input()  data!: Spreadsheet1;
 
   constructor() { }
 
   ngOnInit(): void {
     console.log("init");
+    console.log("** " + this.data.name)
   }
 
 }
