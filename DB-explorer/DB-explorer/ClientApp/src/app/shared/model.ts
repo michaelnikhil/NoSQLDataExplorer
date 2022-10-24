@@ -6,6 +6,7 @@ export interface SpreadsheetTop {
 
 export interface SpreadsheetBase {
   name: string;
+  showPage: boolean;
   description: string;
 }
 
@@ -29,3 +30,7 @@ export interface Item {
   label: string;
 }
 
+export interface PageDisplay {
+  name: string;
+  showPage: boolean;
+}

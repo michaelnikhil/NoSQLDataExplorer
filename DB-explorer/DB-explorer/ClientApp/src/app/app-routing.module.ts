@@ -7,18 +7,21 @@ import { Spreadsheet1Component } from './spreadsheet-top/spreadsheet1/spreadshee
 
 const routes: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full' },
-    { path: 'spreadsheet1', component: Spreadsheet1Component },
+
     { path: 'counter', component: CounterComponent },
-    { path: 'spreadsheet', component: SpreadsheetTopComponent },
-  ];
+    {
+        path: 'spreadsheet', component: SpreadsheetTopComponent,
+        children: [
+            { path: 'spreadsheet1', component: Spreadsheet1Component }
+        ]
+    },
+];
 
 // configures NgModule imports and exports
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {
+export class AppRoutingModule {}
 
-
- }
-
+export const ArrayOfComponents = [HomeComponent, CounterComponent, SpreadsheetTopComponent, Spreadsheet1Component]

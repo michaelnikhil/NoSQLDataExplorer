@@ -1,12 +1,33 @@
 <h1 id="tableLabel">Database</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
-
-<app-nav-data></app-nav-data>
-
 <p *ngIf="!db"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="db">
+
+<ul class="nav nav-tabs">
+  <div *ngFor="let tab of tabs">
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[]"  (click)="onClick(tab.name)">{{tab.name}}</a>
+    </li>
+  </div>
+</ul>
+
+<div *ngIf="showSpreadsheet1">
+  <app-spreadsheet1></app-spreadsheet1>
+</div>
+<div *ngIf="showSpreadsheet2">
+  <p>spreadsheet2</p>
+</div>
+<!-- <div *ngFor="let tab of tabs">
+  <p *ngIf="tab.showPage">
+    <app-spreadsheet1></app-spreadsheet1>
+  </p>
+</div> -->
+
+
+
+
+
+<!-- <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="db">
   <thead>
     <tr>
       <th>Id</th>
@@ -19,4 +40,4 @@
       <td>{{ dbi.spreadsheet2.name }}</td>
     </tr>
   </tbody>
-</table>
+</table> -->
