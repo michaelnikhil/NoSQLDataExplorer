@@ -1,6 +1,7 @@
 ﻿using DB_explorer.Database;
 using DB_explorer.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 
 namespace DB_explorer.Controllers
 {
@@ -17,15 +18,14 @@ namespace DB_explorer.Controllers
         [HttpGet]
         public async Task<JsonResponse> Get()
         {
-            var results = await _repository.Get(null);
+            JsonResponse results = await _repository.Get(null);
             return results;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(JsonResponse json)
+        public async Task<string> Post(JsonResponse json)
         {
-            var results = await _repository.InsertOne(json);
-            return CreatedAtAction(nameof(Get), new { id = json.Id }, json);
+            return await _repository.Update(json);
         }
     }
 }

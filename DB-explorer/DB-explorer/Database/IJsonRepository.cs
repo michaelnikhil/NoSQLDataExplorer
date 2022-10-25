@@ -8,8 +8,8 @@ namespace DB_explorer.Database
     {
         Task<JsonResponse> Get(Expression<Func<JsonResponse, bool>> filter );
         Task<string> InsertOne(JsonResponse json);
-        Task<string> InsertMany(IEnumerable<JsonResponse> jsons);
-        Task Update(JsonResponse json);
+        Task<string> Update(JsonResponse json);
         Task<bool> CollectionExists(IMongoDatabase database, string collectionName);
+        Task<JsonResponse> GetAsync(string id, IMongoCollection<JsonResponse> Collection);
     }
 }

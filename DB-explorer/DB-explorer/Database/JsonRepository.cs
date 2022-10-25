@@ -1,7 +1,6 @@
 using DB_explorer.Model;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using System.Collections;
 using System.Linq.Expressions;
 
 namespace DB_explorer.Database
@@ -39,50 +38,42 @@ namespace DB_explorer.Database
             }
         }
 
-        public async Task<string> InsertOne(JsonResponse JsonResponse)
+        public async Task<string> Update(JsonResponse json)
         {
-            if (!await CollectionExists(_context.DatabaseWrite, _context.CollectionName))
+            var item = await GetAsync(json.Id, Collection_write);
+
+            if (!await CollectionExists(_context.DatabaseWrite, _context.CollectionName) || item == null)
             {
-                await CreateCollection(_context.DatabaseWrite, _context.CollectionName);
+                return await InsertOne(json);
             }
-            return "test";
-            //try
-            //{
-            //    await Collection.InsertOneAsync(JsonResponse);
-            //    return "JsonResponse added";
 
-            //}
-            //catch (MongoWriteException ex)
-            //{
-            //    Console.WriteLine("Failed to insert JsonResponse : \n" + ex.Message);
-            //    return ex.Message;
-            //}
+            try
+            {
+                await Collection_write.ReplaceOneAsync(filter: d => d.Id == json.Id, replacement: json);
+                return "JsonResponse updated";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could not update JsonResponse : " + ex.Message);
+                return ex.Message;
+            }
         }
-
-        public async Task<string> InsertMany(IEnumerable<JsonResponse> JsonResponses)
+        public async Task<string> InsertOne(JsonResponse JsonResponse)
         {
             try
             {
-                await Collection.InsertManyAsync(JsonResponses);
-                return "JsonResponses added";
+                if (!await CollectionExists(_context.DatabaseWrite, _context.CollectionName))
+                {
+                    await CreateCollection(_context.DatabaseWrite, _context.CollectionName);
+                }
+                await Collection_write.InsertOneAsync(JsonResponse);
+                return "JsonResponse added";
 
             }
             catch (MongoWriteException ex)
             {
-                Console.WriteLine("Failed to insert JsonResponses : \n" + ex.Message);
+                Console.WriteLine("Failed to insert JsonResponse : \n" + ex.Message);
                 return ex.Message;
-            }
-        }
-
-        public async Task Update(JsonResponse JsonResponse)
-        {
-            try
-            {
-                await Collection.ReplaceOneAsync(filter: d => d.Id == JsonResponse.Id, replacement: JsonResponse);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Could not update JsonResponse : " + e.Message);
             }
         }
 
@@ -100,5 +91,8 @@ namespace DB_explorer.Database
             await database.CreateCollectionAsync(collectionName);
             return true;
         }
+
+        public async Task<JsonResponse> GetAsync(string id, IMongoCollection<JsonResponse> Collection) =>
+            await Collection.Find(x => x.Id == id).FirstOrDefaultAsync();
     }
 }
