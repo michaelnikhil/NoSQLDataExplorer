@@ -1,5 +1,7 @@
 using DB_explorer.Model;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Collections;
 using System.Linq.Expressions;
 
 namespace DB_explorer.Database
@@ -8,12 +10,14 @@ namespace DB_explorer.Database
     {
         private readonly IMongoDbContext _context;
         private readonly IMongoCollection<JsonResponse> Collection;
+        private readonly IMongoCollection<JsonResponse> Collection_write;
 
 
         public JsonRepository(IMongoDbContext context)
         {
             _context = context;
             Collection = _context.Database.GetCollection<JsonResponse>(_context.CollectionName);
+            Collection_write = _context.DatabaseWrite.GetCollection<JsonResponse>(_context.CollectionName);
         }
 
         public async Task<JsonResponse> Get(Expression<Func<JsonResponse, bool>> filter)
@@ -37,17 +41,22 @@ namespace DB_explorer.Database
 
         public async Task<string> InsertOne(JsonResponse JsonResponse)
         {
-            try
+            if (!await CollectionExists(_context.DatabaseWrite, _context.CollectionName))
             {
-                await Collection.InsertOneAsync(JsonResponse);
-                return "JsonResponse added";
+                await CreateCollection(_context.DatabaseWrite, _context.CollectionName);
+            }
+            return "test";
+            //try
+            //{
+            //    await Collection.InsertOneAsync(JsonResponse);
+            //    return "JsonResponse added";
 
-            }
-            catch (MongoWriteException ex)
-            {
-                Console.WriteLine("Failed to insert JsonResponse : \n" + ex.Message);
-                return ex.Message;
-            }
+            //}
+            //catch (MongoWriteException ex)
+            //{
+            //    Console.WriteLine("Failed to insert JsonResponse : \n" + ex.Message);
+            //    return ex.Message;
+            //}
         }
 
         public async Task<string> InsertMany(IEnumerable<JsonResponse> JsonResponses)
@@ -75,6 +84,21 @@ namespace DB_explorer.Database
             {
                 Console.WriteLine("Could not update JsonResponse : " + e.Message);
             }
+        }
+
+        public async Task<bool> CollectionExists(IMongoDatabase database, string collectionName)
+        {
+            var filter = new BsonDocument("name", collectionName);
+            IAsyncCursor<BsonDocument> collections = await database.ListCollectionsAsync(new ListCollectionsOptions { Filter = filter });
+            return await collections.AnyAsync();
+        }
+
+        public async Task<bool> CreateCollection(IMongoDatabase database, string collectionName)
+        {
+            Console.WriteLine("Create collection {0} on DB {1}", collectionName, database.DatabaseNamespace);
+
+            await database.CreateCollectionAsync(collectionName);
+            return true;
         }
     }
 }

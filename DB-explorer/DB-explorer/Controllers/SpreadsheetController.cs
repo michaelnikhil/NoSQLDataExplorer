@@ -14,12 +14,18 @@ namespace DB_explorer.Controllers
             _repository = repository;
         }
 
-        // GET: Categories
         [HttpGet]
         public async Task<JsonResponse> Get()
         {
             var results = await _repository.Get(null);
             return results;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(JsonResponse json)
+        {
+            var results = await _repository.InsertOne(json);
+            return CreatedAtAction(nameof(Get), new { id = json.Id }, json);
         }
     }
 }

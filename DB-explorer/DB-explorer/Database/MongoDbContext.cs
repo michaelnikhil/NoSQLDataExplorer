@@ -6,6 +6,7 @@ namespace DB_explorer.Database
     public class MongoDbContext : IMongoDbContext
     {
         public IMongoDatabase Database { get; }
+        public IMongoDatabase DatabaseWrite { get; set; }
         private readonly MongoDbSettings _settings;
 
         public MongoDbContext(IOptions<MongoDbSettings> mongoDbSettings)
@@ -13,6 +14,7 @@ namespace DB_explorer.Database
             _settings = mongoDbSettings.Value;
             var client = new MongoClient(_settings.ConnectionString);
             Database = client.GetDatabase(_settings.DatabaseName);
+            DatabaseWrite = client.GetDatabase(_settings.DatabaseNameWrite);
         }
 
         public string CollectionName
