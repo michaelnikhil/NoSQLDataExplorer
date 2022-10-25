@@ -1,0 +1,35 @@
+{
+  "Id": "507f1f77bcf86cd799439033",
+  "Spreadsheet1": {
+    "Settings": [
+      {
+        "Name": "settings 12",
+        "Description": "a description",
+        "Parameter": "param1",
+        "Value": "val1"
+      },
+      {
+        "Name": "settings 2",
+        "Description": "another description",
+        "Parameter": "param2",
+        "Value": "val2"
+      }
+    ],
+    "Name": "Spreadsheet1",
+    "Description": "a description"
+  },
+  "Spreadsheet2": {
+    "Items": [
+      {
+        "Name": "settings3",
+        "Label": "a description"
+      },
+      {
+        "Name": "settings4",
+        "Label": "a description"
+      }
+    ],
+    "Name": "Spreadsheet2",
+    "Description": "another description"
+  }
+}

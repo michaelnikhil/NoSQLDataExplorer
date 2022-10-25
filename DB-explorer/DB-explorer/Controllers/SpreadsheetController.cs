@@ -1,7 +1,6 @@
 ﻿using DB_explorer.Database;
 using DB_explorer.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 
 namespace DB_explorer.Controllers
 {
