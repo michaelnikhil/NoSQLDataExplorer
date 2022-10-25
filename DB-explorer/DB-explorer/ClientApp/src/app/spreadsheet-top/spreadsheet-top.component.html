@@ -3,7 +3,7 @@
 <p *ngIf="!db"><em>Loading...</em></p>
 
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs mb-3">
   <div *ngFor="let tab of tabs">
     <li class="nav-item">
       <a class="nav-link" [routerLink]="[]"  (click)="onClick(tab.name)">{{tab.name}}</a>
@@ -12,10 +12,10 @@
 </ul>
 
 
-<div *ngIf="showSpreadsheet1">
+<div class="tab-content" *ngIf="showSpreadsheet1">
   <app-spreadsheet1 [data]="db.spreadsheet1"></app-spreadsheet1>
 </div>
-<div *ngIf="showSpreadsheet2">
+<div class="tab-content" *ngIf="showSpreadsheet2">
   <app-spreadsheet2 [data]="db.spreadsheet2"></app-spreadsheet2>
 </div>
 
