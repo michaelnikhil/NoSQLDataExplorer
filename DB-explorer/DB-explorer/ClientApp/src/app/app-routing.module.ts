@@ -30,4 +30,4 @@ export const ArrayOfComponents = [
   Spreadsheet2Component,
   SettingsComponent,
   ItemsComponent,
-  NavMenuComponent]
+  NavMenuComponent];
