@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
-import { fromEvent, Observable } from 'rxjs';
+import { Component, Inject } from '@angular/core';
 import { PageDisplay, SpreadsheetTop } from '../shared/model';
 
 @Component({
@@ -8,12 +7,9 @@ import { PageDisplay, SpreadsheetTop } from '../shared/model';
   templateUrl: './spreadsheet-top.component.html',
   styleUrls: ['./spreadsheet-top.component.css']
 })
-export class SpreadsheetTopComponent implements OnInit {
+export class SpreadsheetTopComponent {
   showSpreadsheet1 = false;
   showSpreadsheet2 = false;
-  ngOnInit(): void {
-    
-  }
 
   public db!: SpreadsheetTop;
   public tabs : PageDisplay[]  = [
@@ -35,8 +31,5 @@ export class SpreadsheetTopComponent implements OnInit {
     this.tabs.filter(c=>c.name==pageName).forEach(c=>c.showPage=true);
     this.showSpreadsheet1 = this.tabs.filter(c=>c.name=='spreadsheet1').map(c=>c.showPage)[0];
     this.showSpreadsheet2 = this.tabs.filter(c=>c.name=='spreadsheet2').map(c=>c.showPage)[0];
-
-    console.log('button clicked ' + pageName);
-    console.log('%o', this.tabs);
   }
 }

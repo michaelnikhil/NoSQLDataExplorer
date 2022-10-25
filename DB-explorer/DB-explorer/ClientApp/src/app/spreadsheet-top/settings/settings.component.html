@@ -1,0 +1,18 @@
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="data">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameter</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let setting of data.settings">
+      <td>{{ setting.name }}</td>
+      <td>{{ setting.description }}</td>
+      <td>{{ setting.parameter }}</td>
+      <td>{{ setting.value }}</td>
+    </tr>
+  </tbody>
+</table>

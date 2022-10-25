@@ -11,33 +11,11 @@
   </div>
 </ul>
 
+
 <div *ngIf="showSpreadsheet1">
   <app-spreadsheet1 [data]="db.spreadsheet1"></app-spreadsheet1>
 </div>
 <div *ngIf="showSpreadsheet2">
-  <p>spreadsheet2</p>
+  <app-spreadsheet2 [data]="db.spreadsheet2"></app-spreadsheet2>
 </div>
-<!-- <div *ngFor="let tab of tabs">
-  <p *ngIf="tab.showPage">
-    <app-spreadsheet1></app-spreadsheet1>
-  </p>
-</div> -->
 
-
-
-
-
-<!-- <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="db">
-  <thead>
-    <tr>
-      <th>Id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr  *ngFor="let dbi of db">
-      <td>{{ dbi.id }}</td>
-      <td>{{ dbi.spreadsheet1.name }}</td>
-      <td>{{ dbi.spreadsheet2.name }}</td>
-    </tr>
-  </tbody>
-</table> -->

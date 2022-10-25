@@ -1,0 +1,14 @@
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="data">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data.items">
+      <td>{{ item.name }}</td>
+      <td>{{ item.label }}</td>
+    </tr>
+  </tbody>
+</table>

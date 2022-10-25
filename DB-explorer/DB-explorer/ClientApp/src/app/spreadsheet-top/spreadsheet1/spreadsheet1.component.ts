@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Spreadsheet1 } from 'src/app/shared/model';
 
 @Component({
@@ -6,15 +6,9 @@ import { Spreadsheet1 } from 'src/app/shared/model';
   templateUrl: './spreadsheet1.component.html',
   styleUrls: ['./spreadsheet1.component.css']
 })
-export class Spreadsheet1Component implements OnInit {
-
+export class Spreadsheet1Component {
   @Input()  data!: Spreadsheet1;
 
   constructor() { }
-
-  ngOnInit(): void {
-    console.log("init");
-    console.log("** " + this.data.name)
-  }
 
 }
