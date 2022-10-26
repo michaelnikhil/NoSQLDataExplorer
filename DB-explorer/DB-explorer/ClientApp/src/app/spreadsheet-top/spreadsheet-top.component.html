@@ -13,9 +13,9 @@
 
 
 <div class="tab-content" *ngIf="showSpreadsheet1">
-  <app-spreadsheet1 [data]="db.spreadsheet1"></app-spreadsheet1>
+  <app-spreadsheet1 [data]="(db | async)!"></app-spreadsheet1>
 </div>
 <div class="tab-content" *ngIf="showSpreadsheet2">
-  <app-spreadsheet2 [data]="db.spreadsheet2"></app-spreadsheet2>
+  <app-spreadsheet2 [data]="(db | async)!"></app-spreadsheet2>
 </div>
 

@@ -33,3 +33,17 @@ export interface PageDisplay {
   name: string;
   showPage: boolean;
 }
+
+export const emptyData : SpreadsheetTop = {
+    id: '',
+    spreadsheet1: {
+        name: '',
+        description: '',
+        settings: []
+    },
+    spreadsheet2: {
+        name: '',
+        description: '',
+        items: []
+    }
+};

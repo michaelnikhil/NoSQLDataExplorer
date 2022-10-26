@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Spreadsheet2 } from '../../shared/model';
+import { emptyData, SpreadsheetTop } from '../../shared/model';
 
 @Component({
   selector: 'app-spreadsheet2',
@@ -8,7 +8,7 @@ import { Spreadsheet2 } from '../../shared/model';
 })
 export class Spreadsheet2Component {
 
-  @Input() data!: Spreadsheet2;
+  @Input()  data: SpreadsheetTop = emptyData;
   constructor() { }
 
 }
