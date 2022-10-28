@@ -1,15 +1,17 @@
-import { Component, Input } from '@angular/core';
-import { Spreadsheet1 } from '../../shared/model';
+import { Component, Input, OnInit } from '@angular/core';
+import { Setting, Spreadsheet1 } from '../../shared/model';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  styleUrls: ['./settings.component.css'],
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
 
   @Input() data!: Spreadsheet1;
+  dataSource: Setting[] = [];
 
-  constructor() { }
-
+  ngOnInit(): void {
+    this.dataSource = this.data.settings;
+  }
 }

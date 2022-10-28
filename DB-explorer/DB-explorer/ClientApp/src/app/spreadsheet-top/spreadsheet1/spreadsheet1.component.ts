@@ -8,7 +8,4 @@ import { emptyData, SpreadsheetTop } from 'src/app/shared/model';
 })
 export class Spreadsheet1Component {
   @Input()  data: SpreadsheetTop = emptyData;
-
-  constructor() { }
-
 }
