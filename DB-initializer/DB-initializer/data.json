@@ -5,12 +5,14 @@
     "Description": "a description",
     "Settings": [
       {
+        "Id": "507f1f77bcf86cd799439022",
         "Name": "settings 1",
         "Description": "a description",
         "Parameter": "param1",
         "Value": "val1"
       },
       {
+        "Id": "507f1f77bcf86cd799439033",
         "Name": "settings 2",
         "Description": "another description",
         "Parameter": "param2",
@@ -24,10 +26,12 @@
     "Description": "another description",
     "Items": [
       {
+        "Id": "507f1f77bcf86cd799439044",
         "Name": "settings3",
         "Label": "a description"
       },
       {
+        "Id": "507f1f77bcf86cd799439055",
         "Name": "settings4",
         "Label": "a description"
       }

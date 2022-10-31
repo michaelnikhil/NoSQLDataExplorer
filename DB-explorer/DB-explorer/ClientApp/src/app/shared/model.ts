@@ -14,6 +14,7 @@ export interface Spreadsheet1 extends SpreadsheetBase {
 }
 
 export interface Setting {
+  id: string;
   name: string;
   description: string;
   parameter: string;
@@ -25,6 +26,7 @@ export interface Spreadsheet2 extends SpreadsheetBase {
 }
 
 export interface Item {
+  id: string;
   name: string;
   label: string;
 }
