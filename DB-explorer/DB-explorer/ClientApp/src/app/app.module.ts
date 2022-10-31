@@ -10,7 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { dataReducer } from './store/reducer';
 import { AppEffects } from './store/effects';
-import { environment } from 'src/environments/environment';
+import { environment } from 'environments/environment';
 
 
 @NgModule({
