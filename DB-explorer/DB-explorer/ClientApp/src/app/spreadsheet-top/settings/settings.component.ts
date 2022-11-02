@@ -46,13 +46,9 @@ export class SettingsComponent implements OnInit {
 
     
     let tmp2 = tmp.spreadsheet1.settings.map(element => {
-      if (element.id == setting.id) {
-        return setting;
+      return element.id == setting.id ? setting : element;
       }
-      else {
-        return element;
-      }
-    });
+    );
 
     console.log('tmp2 %O',tmp2);
     tmp.spreadsheet1.settings.forEach(

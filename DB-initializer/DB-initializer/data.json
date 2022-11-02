@@ -1,22 +1,43 @@
 {
-  "Id": "507f1f77bcf86cd799439011",
   "Spreadsheet1": {
     "Name": "Spreadsheet1",
     "Description": "a description",
     "Settings": [
       {
-        "Id": "507f1f77bcf86cd799439022",
         "Name": "settings 1",
         "Description": "a description",
         "Parameter": "param1",
         "Value": "val1"
       },
       {
-        "Id": "507f1f77bcf86cd799439033",
         "Name": "settings 2",
         "Description": "another description",
         "Parameter": "param2",
         "Value": "val2"
+      },
+      {
+        "Name": "settings 3",
+        "Description": "a description",
+        "Parameter": "param3",
+        "Value": "val3"
+      },
+      {
+        "Name": "settings 4",
+        "Description": "another description",
+        "Parameter": "param4",
+        "Value": "val4"
+      },
+      {
+        "Name": "settings 5",
+        "Description": "a description",
+        "Parameter": "param5",
+        "Value": "val5"
+      },
+      {
+        "Name": "settings 6",
+        "Description": "another description",
+        "Parameter": "param6",
+        "Value": "val6"
       }
     ]
   },
@@ -26,13 +47,19 @@
     "Description": "another description",
     "Items": [
       {
-        "Id": "507f1f77bcf86cd799439044",
-        "Name": "settings3",
+        "Name": "item 1",
         "Label": "a description"
       },
       {
-        "Id": "507f1f77bcf86cd799439055",
-        "Name": "settings4",
+        "Name": "item 2",
+        "Label": "a description"
+      },
+      {
+        "Name": "item 3",
+        "Label": "a description"
+      },
+      {
+        "Name": "item 4",
         "Label": "a description"
       }
     ]

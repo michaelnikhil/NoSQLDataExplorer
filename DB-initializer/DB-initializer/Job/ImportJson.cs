@@ -1,15 +1,6 @@
-﻿using CsvHelper;
-using DB_initializer.Model;
-using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using DB_initializer.Model;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
+using System.Text.Json;
 
 namespace DB_initializer.Job
 {
@@ -22,7 +13,7 @@ namespace DB_initializer.Job
             var jsonstring = File.ReadAllText(path);
             if (!string.IsNullOrEmpty(jsonstring))
             {
-                result = JsonConvert.DeserializeObject<JsonResponse>(jsonstring);
+                result =  JsonSerializer.Deserialize<JsonResponse>(jsonstring);
             }
             return result;
         }

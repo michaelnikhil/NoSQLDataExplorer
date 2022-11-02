@@ -7,8 +7,12 @@ namespace DB_initializer.Model
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string Id{ get; set; }
         public string  Name { get; set; }
         public string Label { get; set; }
+        public Item()
+        {
+            Id = ObjectId.GenerateNewId().ToString();
+        }
     }
 }
