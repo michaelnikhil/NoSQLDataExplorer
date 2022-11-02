@@ -11,7 +11,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { dataReducer } from './store/reducer';
 import { AppEffects } from './store/effects';
 import { environment } from 'environments/environment';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgrxFormsModule } from 'ngrx-forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +32,13 @@ import { environment } from 'environments/environment';
     EffectsModule.forRoot([AppEffects]),
     StoreModule.forRoot({state: dataReducer}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    NoopAnimationsModule,
+    MatTableModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgrxFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

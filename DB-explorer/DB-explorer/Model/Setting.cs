@@ -11,5 +11,6 @@ namespace DB_explorer.Model
         public string? Description { get; set; }
         public string? Parameter { get; set; }
         public string? Value { get; set; }
+        public Boolean isEdit { get; set; } = false;
     }
 }

@@ -19,6 +19,7 @@ export interface Setting {
   description: string;
   parameter: string;
   value: string;
+  isEdit:boolean;
 }
 
 export interface Spreadsheet2 extends SpreadsheetBase {
@@ -29,6 +30,7 @@ export interface Item {
   id: string;
   name: string;
   label: string;
+  isEdit:boolean;
 }
 
 export interface PageDisplay {
@@ -36,16 +38,44 @@ export interface PageDisplay {
   showPage: boolean;
 }
 
-export const emptyData : SpreadsheetTop = {
-    id: '',
-    spreadsheet1: {
-        name: '',
-        description: '',
-        settings: []
-    },
-    spreadsheet2: {
-        name: '',
-        description: '',
-        items: []
-    }
+export const emptyData: SpreadsheetTop = {
+  id: '',
+  spreadsheet1: {
+    name: '',
+    description: '',
+    settings: []
+  },
+  spreadsheet2: {
+    name: '',
+    description: '',
+    items: []
+  }
 };
+
+export const COLUMNS_SCHEMA_SETTINGS = [
+  {
+    key: 'name',
+    type: 'text',
+    label: 'Name'
+  },
+  {
+    key: 'description',
+    type: 'text',
+    label: 'Description'
+  },
+  {
+    key: 'parameter',
+    type: 'text',
+    label: 'Parameter'
+  },
+  {
+    key: 'value',
+    type: 'text',
+    label: 'Value'
+  },
+  {
+    key: 'isEdit',
+    type: 'isEdit',
+    label: ''
+  }
+];
