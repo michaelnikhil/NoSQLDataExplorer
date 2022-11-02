@@ -1,5 +1,7 @@
-﻿using DB_explorer.Database;
+﻿using AutoMapper;
+using DB_explorer.Database;
 using DB_explorer.Model;
+using DB_explorer.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DB_explorer.Controllers
@@ -9,9 +11,11 @@ namespace DB_explorer.Controllers
     public class SpreadsheetController : ControllerBase
     {
         private readonly IJsonRepository _repository;
-        public SpreadsheetController(IJsonRepository repository)
+        public readonly IMapper _mapper;
+        public SpreadsheetController(IMapper mapper, IJsonRepository repository)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -19,6 +23,19 @@ namespace DB_explorer.Controllers
         {
             JsonResponse results = await _repository.Get(null);
             return results;
+        }
+
+        [HttpGet("flat")]
+        public async Task<FlattenResponseViewModel> GetFlat()
+        {
+            JsonResponse results = await _repository.Get(null);
+            var flattenResponse = _mapper.Map<FlattenResponseViewModel>(results);
+            var settings = _mapper.Map<List<SettingViewModel>>(results.Spreadsheet1.Settings);
+            var items = _mapper.Map<List<ItemViewModel>>(results.Spreadsheet2.Items);
+            flattenResponse.Items = items;
+            flattenResponse.Settings = settings;
+
+            return flattenResponse;
         }
 
         [HttpPost]

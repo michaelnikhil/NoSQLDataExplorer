@@ -79,3 +79,4 @@ export const COLUMNS_SCHEMA_SETTINGS = [
     label: ''
   }
 ];
+

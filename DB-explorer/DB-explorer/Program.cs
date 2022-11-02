@@ -1,4 +1,5 @@
 using DB_explorer.Database;
+using DB_explorer.MappingProfile;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDBSettings"))
     .AddTransient<IMongoDbContext, MongoDbContext>()
     .AddTransient(typeof(IJsonRepository), typeof(JsonRepository));
-
+builder.Services.AddAutoMapper(typeof(Program));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
