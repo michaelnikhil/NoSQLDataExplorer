@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 import { CounterComponent } from './counter/counter.component';
 import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
+import { PrettyPrintPipe } from './shared/pretty-print.pipe';
 import { ItemsComponent } from './spreadsheet-top/items/items.component';
 import { SettingsComponent } from './spreadsheet-top/settings/settings.component';
 import { SpreadsheetTopComponent } from './spreadsheet-top/spreadsheet-top.component';
@@ -30,4 +31,5 @@ export const ArrayOfComponents = [
   Spreadsheet2Component,
   SettingsComponent,
   ItemsComponent,
-  NavMenuComponent];
+  NavMenuComponent,
+  PrettyPrintPipe];
