@@ -7,7 +7,7 @@ export const apiKeyFeatureKey = 'apiKey';
 
 export const dataReducer = createReducer(
   initialState,
-  on(fromActions.loadDataSuccess, (state, action) => ({ ...state, data: action.data, error: null })),
+  on(fromActions.loadDataSuccess, (state, action) => ({ ...state, data: action.data, hasLoaded: true, error: null })),
   on(fromActions.loadDataFailure, (state, action) => ({ ...state, data: emptyData, error: action.error })),
   on(fromActions.updateSettings, (state, action) => {
     const updatedSettings: Setting[] = state.data.spreadsheet1.settings.map(

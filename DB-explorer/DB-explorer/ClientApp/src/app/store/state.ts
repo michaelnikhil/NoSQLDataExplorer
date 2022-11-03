@@ -1,9 +1,12 @@
 import { emptyData, SpreadsheetTop } from '../shared/model';
 
 export interface AppState {
-    data: SpreadsheetTop
+  hasLoaded: boolean;
+    data: SpreadsheetTop;
   }
 
   export const initialState: AppState = {
+    hasLoaded: false,
     data: emptyData
+
   };

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { PageDisplay, SpreadsheetTop } from '../shared/model';
 import { loadData } from '../store/actions';
-import { selectData } from '../store/selectors';
+import { selectData, selectLoadStatus } from '../store/selectors';
 import { AppState } from '../store/state';
 /* eslint-disable no-console */
 @Component({
@@ -20,7 +20,12 @@ export class SpreadsheetTopComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.store.dispatch(loadData());
+    this.store.select(selectLoadStatus)
+    .subscribe(hasLoaded => {
+      if (!hasLoaded) {
+ this.store.dispatch(loadData());
+}
+    });
 
   }
 
