@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Setting, SpreadsheetTop } from '../shared/model';
+import { SpreadsheetTop } from '../shared/model';
 
 export const loadData = createAction(
   '[Data] Load Data'
@@ -20,7 +20,8 @@ export const loadDataSuccess = createAction(
     props<{setting: any}>()
   );
 
-  export const updateData = createAction(
-    '[Settings] Update setting',
-    props<{data: SpreadsheetTop}>()
+  export const updateItems = createAction(
+    '[Items] Update item',
+    props<{item: any}>()
   );
+

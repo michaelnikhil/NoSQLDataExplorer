@@ -19,7 +19,9 @@ export interface Setting {
   description: string;
   parameter: string;
   value: string;
-  isEdit:boolean;
+}
+export interface SettingEdit extends Setting {
+  isEdit: boolean;
 }
 
 export interface Spreadsheet2 extends SpreadsheetBase {
@@ -30,7 +32,10 @@ export interface Item {
   id: string;
   name: string;
   label: string;
-  isEdit:boolean;
+}
+
+export interface ItemEdit extends Item {
+  isEdit: boolean;
 }
 
 export interface PageDisplay {
@@ -80,3 +85,20 @@ export const COLUMNS_SCHEMA_SETTINGS = [
   }
 ];
 
+export const COLUMNS_SCHEMA_ITEMS = [
+  {
+    key: 'name',
+    type: 'text',
+    label: 'Name'
+  },
+  {
+    key: 'label',
+    type: 'text',
+    label: 'label'
+  },
+  {
+    key: 'isEdit',
+    type: 'isEdit',
+    label: ''
+  }
+];

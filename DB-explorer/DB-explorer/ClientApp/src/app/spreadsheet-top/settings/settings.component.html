@@ -1,23 +1,4 @@
-<!-- <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="data">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Parameter</th>
-      <th>Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let setting of data.settings">
-      <td>{{ setting.name }}</td>
-      <td>{{ setting.description }}</td>
-      <td>{{ setting.parameter }}</td>
-      <td>{{ setting.value }}</td>
-    </tr>
-  </tbody>
-</table> -->
-
-<table mat-table [dataSource]="dataSource">
+<table mat-table [dataSource]="dataSource_view">
   <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
     <th mat-header-cell *matHeaderCellDef>
       {{ col.label }}
@@ -25,7 +6,7 @@
     <td mat-cell *matCellDef="let element">
       <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
         <div class="btn-edit" *ngSwitchCase="'isEdit'">
-          <button mat-button (click)=" onEdit(element)">Edit {{element.isEdit}}</button>
+          <button mat-button (click)=" onEdit(element)">Edit</button>
         </div>
         <span *ngSwitchDefault>
           {{ element[col.key] }}
@@ -33,7 +14,7 @@
       </div>
       <div *ngIf="element.isEdit">
         <div class="btn-edit" *ngIf="col.key === 'isEdit'; else dataField">
-          <button mat-button (click)="element.isEdit = onSubmit(element)">Done {{element.isEdit}} </button>
+          <button mat-button (click)="element.isEdit = onSubmit(element)">Done</button>
         </div>
         <ng-template #dataField>
           <mat-form-field>
@@ -46,38 +27,3 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
-
-
-<!-- <div *ngIf="formState | async as formState">
-
-  <form [ngrxFormState]="formState" (submit)="submit()">
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="User Name" [ngrxFormControlState]="formState.controls.userName">
-        <mat-error *ngIf="formState.errors._userName?.required">
-          A user name is required
-        </mat-error>
-      </mat-form-field>
-      <div class="buttons">
-        <div>
-          <button mat-raised-button color="primary" type="submit"
-            [disabled]="formState.isInvalid && formState.isSubmitted">
-            Register
-          </button>
-          <button mat-raised-button type="button" [disabled]="formState.isPristine
-                        && formState.isUntouched
-                        && formState.isUnsubmitted" (click)="reset()">
-            Reset
-          </button>
-        </div>
-      </div>
-  </form>
-</ngf-form-example> -->
-<!-- <mat-form-field>
-  <input matInput
-         placeholder="User Name"
-         [ngrxFormControlState]="formState.controls.userName">
-  <mat-error *ngIf="formState.errors._userName?.required">
-    A user name is required
-  </mat-error>
-</mat-form-field> -->
