@@ -1,5 +1,4 @@
 using DB_explorer.Database;
-using DB_explorer.MappingProfile;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -10,40 +10,25 @@ services:
         - "27017:27017"
         command: mongod
         networks:
-        - elk
-    
-    mongo-express:
-        container_name: mongo_express
-        image: mongo-express
-        restart: always
-        ports:
-          - 8081:8081
-        depends_on:
-          - "mongodb"    
-        environment:
-        - ME_CONFIG_MONGODB_SERVER=mongodb          
-        networks:
-        - elk      
+        - elk   
 
-    media-api:
+    db-explorer:
         container_name: DB-explorer
         build:
             context: ../DB-explorer/
         volumes:
             - "../DB-explorer/:/code/app"
         ports:
-            - "51566:51566"
+            - "8000:80"
         command: 
             ["dotnet", "watch", "run"]
         depends_on:
             - "mongodb"
-        environment:
-            - ASPNETCORE_URLS=http://*:51566
         networks:
           - elk
 
 networks: 
-    elk:
+    elk:    
         driver: bridge
 
 volumes: 
