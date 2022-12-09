@@ -27,6 +27,19 @@ services:
         networks:
           - elk
 
+    db-initializer:
+        container_name: DB-initializer
+        build:
+            context: ../DB-initializer/
+        volumes:
+            - "../DB-initializer/:/code/app"
+        ports:
+            - "8001:80"
+        depends_on:
+            - "mongodb"
+        networks:
+          - elk
+
 networks: 
     elk:    
         driver: bridge
