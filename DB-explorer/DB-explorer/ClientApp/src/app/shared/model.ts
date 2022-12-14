@@ -1,3 +1,8 @@
+
+export interface dataObject {
+  spreadsheetTop: SpreadsheetTop;
+  flattenSpreadsheet: FlattenResponseViewModel;
+}
 export interface SpreadsheetTop {
   id: string;
   spreadsheet1: Spreadsheet1;
@@ -43,6 +48,50 @@ export interface PageDisplay {
   showPage: boolean;
 }
 
+export interface FlattenResponseViewModel
+{
+    jsonResponseId: string;
+    spreadsheet1Id: string;
+    spreadsheet2Id: string;
+    spreadSheet1: Spreadsheet1ViewModel;
+    spreadSheet2: Spreadsheet2ViewModel;
+    settings: SettingViewModel[];
+    items: ItemViewModel[];
+}
+
+export interface Spreadsheet1ViewModel
+{
+    id: string;
+    name: string;
+    description: string;
+    settingsId: string[];
+}
+
+export interface Spreadsheet2ViewModel
+{
+  id: string;
+  name: string;
+  description: string;
+  itemsId: string[];
+}
+
+export interface ItemViewModel
+{
+    id: string;
+    name: string;
+    label: string;
+}
+
+export interface SettingViewModel
+{
+    id: string;
+    name: string;
+    description: string;
+    parameter: string;
+    value: string;
+}
+
+
 export const emptyData: SpreadsheetTop = {
   id: '',
   spreadsheet1: {
@@ -55,6 +104,26 @@ export const emptyData: SpreadsheetTop = {
     description: '',
     items: []
   }
+};
+
+export const emptyFlatData: FlattenResponseViewModel = {
+  jsonResponseId:'',
+  spreadsheet1Id: '',
+  spreadsheet2Id: '',
+  spreadSheet1: {
+    id:'',
+    name:'',
+    description:'',
+    settingsId:[]
+  },
+  spreadSheet2: {
+    id:'',
+    name:'',
+    description:'',
+    itemsId:[]
+  },
+  settings:[],
+  items:[]
 };
 
 export const COLUMNS_SCHEMA_SETTINGS = [

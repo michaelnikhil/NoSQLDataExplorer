@@ -18,11 +18,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgrxFormsModule } from 'ngrx-forms';
+import { JsonPrettyPrintComponent } from './home/json-pretty-print/json-pretty-print.component';
+import { JsonFlatComponent } from './home/json-flat/json-flat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArrayOfComponents
+    ArrayOfComponents,
+    JsonPrettyPrintComponent,
+    JsonFlatComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

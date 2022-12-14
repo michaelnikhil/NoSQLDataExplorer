@@ -1,3 +1,20 @@
-<h1>Hello, world!</h1>
-<p>Welcome to your new single-page application</p>
-<pre [innerHTML]="db | async | prettyprint"></pre>
+
+
+<div>
+  <h1>Data display</h1>
+  <a href="http://localhost:8081" target="_blank">mongo-express</a>
+</div>
+
+
+<div class="flex-container">
+  <div class="flex-child magenta">
+    <p>Nested data</p>
+    <app-json-pretty-print [db]="(db | async)!"></app-json-pretty-print>
+  </div>
+
+  <div class="flex-child green">
+    <p>Flattened data</p>
+    <app-json-flat [db]="(db | async)!"></app-json-flat>
+  </div>
+
+</div>
