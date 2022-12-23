@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource_view">
+<!-- <table mat-table [dataSource]="dataSource_view">
   <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
     <th mat-header-cell *matHeaderCellDef>
       {{ col.label }}
@@ -26,4 +26,10 @@
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+</table> -->
+
+<app-custom-table
+[dataSource_view]="dataSource_view"
+  [displayedColumns]="displayedColumns"
+  [columnsSchema]="columnsSchema"
+></app-custom-table>

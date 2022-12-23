@@ -1,6 +1,18 @@
 <body>
-  <app-nav-menu></app-nav-menu>
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+<primary-navigation></primary-navigation>
+
+
+		<header id="app-header">
+        <app-header></app-header>
+    </header>
+
+    <main>
+      <div class="site-inner" id="main-content">
+       <div class="content-area">
+        <router-outlet></router-outlet>
+       </div>
+
+      </div>
+    </main>
+
 </body>

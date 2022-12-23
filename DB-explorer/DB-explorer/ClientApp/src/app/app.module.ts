@@ -18,11 +18,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgrxFormsModule } from 'ngrx-forms';
+import { CustomTableComponent } from './shared/custom-table/custom-table.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArrayOfComponents
+    ArrayOfComponents,
+    CustomTableComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

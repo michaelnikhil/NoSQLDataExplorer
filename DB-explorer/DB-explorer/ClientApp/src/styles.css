@@ -1,19 +1,535 @@
-/* You can add global styles to this file, and also import other style files */
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
+
+* {
+	box-sizing: border-box;
 }
 
-code {
-  color: #e01a76;
+html {
+	font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+	--color-text-base: #464646;
+	--color-text-base-reverse: white;
+	--color-link-base: #005F87;
+	--color-link-base-hover: #DD700F;
+	--color-link-base-active: var(--color-link-base-hover);
+	--color-focus-base: #3296B9;
+	--space-nav-primary-bar-width: 64px;
+	--space-app-frame-header-height: 48px;
+	--color-app-frame-text: var(--color-text-base-reverse);
+	--color-app-frame-links: #FFFFFF;
+	--color-app-frame-links-two: #AAE6F5;
+	--color-app-frame-links-text-hover: #FFCD50;
+	--color-app-frame-links-bg-hover: rgba(0,0,0,0.1);
+	--color-app-frame-links-bg-active: rgba(0,0,0,0.2);
+	--color-nav-primary-background: #006487;
+	--color-nav-secondary-background: #003750;
+	--color-button-chromeless-reverse: var(--color-app-frame-links-two);
+	--color-button-chromeless-reverse-hover: var(--color-app-frame-links-text-hover);
+	--color-button-chromeless-reverse-active: var(--color-button-chromeless-reverse-hover); 
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+body {
+	background: radial-gradient(ellipse farthest-side at 75% top, #55A0B9 -100%, #0077A1 40%, #006B91 75%, #006487 calc(100% - (var(--space-nav-primary-bar-width) + 4px)));
+	color: var(--color-text-base); 
+	height: 100vh;
+	line-height: 1.32;
+	margin: 0;
+	overflow: hidden;
+	position: relative;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+h1,
+h2,
+h3 {
+	font-weight: 400;
+	margin: 0;
+}
+
+p,
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+ol {
+	list-style-type: none;
+}
+
+p + p, 
+* + table {
+	margin-top: 16px;
+}
+
+a:link,
+a:visited {
+	color: var(--color-link-base);
+	text-decoration: underline;
+}
+
+a:hover {
+    color: var(--color-link-base-hover);
+    cursor: pointer;
+}
+
+a:focus {
+	outline: 2px solid var(--color-focus-base);
+	outline-offset: 2px;
+}
+
+a:active {
+	color: var(--color-link-base-active);
+}
+
+main {
+	background: white;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	font-size: 16px;
+	margin: 0 8px 0 var(--space-nav-primary-bar-width);
+	height: calc(100vh - var(--space-app-frame-header-height));
+	overflow: auto;
+	padding: 16px; 
+}
+
+aside.example-notes-not-real-content {
+	background: #E3FAFF;
+	border: 1px solid #66C8DE;
+	float: right;
+	max-width: 280px;
+	padding: 8px;
+} /* this is only needed for this example */
+
+aside.example-notes-not-real-content h3 {
+	color: #005F87;
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 4px;
+} /* this is only needed for this example */
+
+/* Application Frame */
+#app-header {
+	margin-left: var(--space-nav-primary-bar-width);
+	min-height: var(--space-app-frame-header-height);
+}
+
+#app-header h1 {
+	font-size: 24px;
+	max-width: calc(100% - 96px);
+	padding: 8px 0;
+}
+
+#app-header h2 {
+	font-size: 16px;
+	font-weight: 600;
+	padding: 0 0 4px;
+}
+
+#Siemens-logo {
+	position: fixed;
+	right: 16px;
+	top: 16px;
+	width: 80px;
+}
+
+/* Navigation
+*** tooltips (data-tooltip?, selected, open belong on the <li>
+*** focus, hover, active states; counter + data-count belong on the <a>
+*/
+#primary-navigation {
+	background: var(--color-nav-primary-background);
+	bottom: 0;
+	position: fixed;
+	top: 0;
+	width: 64px;
+	z-index: 2;
+}
+
+#primary-nav-menu {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding-bottom: 16px;
+}
+
+#nav-item-help {
+	margin-top: auto;
+}
+
+[id^="nav-item-"] {
+	font-size: 10px;
+	line-height: 14px;
+	padding: 4px;
+	text-align: center;
+	word-break: break-word;
+}
+
+[id^="nav-item-"]:not(#nav-item-avatar):not(#nav-item-more) span {
+    margin-bottom: 4px;
+    max-height: 28px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#nav-item-app-home {
+    height: 48px;
+}
+
+[id^="nav-item-"] a,
+#nav-item-app-home {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+[id^="nav-item-"] a svg {
+	height: 16px;
+	margin-top: 4px;
+	width: 16px;
+}
+
+#primary-nav-menu.open {
+	box-shadow: 2px 0 4px rgba(0,0,0,0.3);
+}
+
+#app-header,
+[id*="-navigation"],
+[id^="nav-item-"].selected a,
+[id^="nav-item-"].open a {
+	color: var(--color-app-frame-text);
+}
+
+#app-header a,
+[id*="-navigation"] a {
+	color: var(--color-app-frame-links);
+	text-decoration: none;
+}
+
+[id^="nav-item-"]:not(#nav-item-avatar) a svg [fill] {
+	fill: var(--color-app-frame-links);
+}
+
+[id^="nav-item-"]:not(#nav-item-avatar) a [data-name="icon-placeholder"] g {
+    fill: rgba(0, 100, 135, 0.5);
+    stroke: var(--color-app-frame-links);
+} /* this is only needed for this example */
+
+[id^="nav-item-"]:not(#nav-item-avatar).selected a [data-name="icon-placeholder"] g,
+[id^="nav-item-"]:not(#nav-item-avatar).open a [data-name="icon-placeholder"] g {
+    fill: rgba(0, 100, 135, 0.5);
+    stroke: var(--color-app-frame-text);
+} /* this is only needed for this example */
+
+[id^="nav-item-"] a:focus {
+	outline-offset: 0;
+}
+
+[id^="nav-item-"]:not(.selected):not(.open) a:hover {
+	background: var(--color-app-frame-links-bg-hover);
+	outline: 4px solid var(--color-app-frame-links-bg-hover);
+}
+
+[id^="nav-item-"]:not(.selected):not(.open) a:active {
+	background: var(--color-app-frame-links-bg-active);
+	outline: 4px solid var(--color-app-frame-links-bg-active);
+}
+
+[id^="nav-item-"].open {
+	background: var(--color-nav-secondary-background);
+}
+
+[id^="nav-item-"]:not(#nav-item-avatar).open a svg [fill] {
+	fill: var(--color-app-frame-text);
+}
+
+#nav-item-avatar span:first-child {
+	background: #F0F0F0;
+	border-radius: 50%;
+	height: 32px;
+	width: 32px;
+}
+
+#nav-item-avatar a {
+	padding: 4px;
+}
+
+#nav-item-avatar a svg {
+	margin-top: 8px;
+}
+
+#nav-item-more {
+	display: none;
+}
+
+#nav-item-more a {
+	align-items: stretch;
+	flex-direction: row;
+}
+
+#nav-item-more span {
+	margin: 0;
+	max-width: calc(100% - 20px);
+}
+
+#nav-item-more svg {
+	fill: none;
+	margin: 0 0 0 4px;
+	stroke: var(--color-app-frame-links);
+}
+
+#secondary-navigation {
+	background: var(--color-nav-secondary-background);
+	bottom: 0;
+	left: -124px;
+	max-width: 288px;
+	position: absolute;
+	top: 0;
+	width: 188px;
+	transition: all 100ms ease-out;
+	z-index: -1;
+}
+
+#secondary-navigation.open {
+	left: var(--space-nav-primary-bar-width);
+	z-index: 1;
+}
+
+#secondary-navigation.open:not(.pinned) {
+	box-shadow: 8px 0 16px rgba(0,0,0,0.3);
+}
+
+[id^="secondary-nav-menu-"] li {
+	padding: 4px 16px;
+}
+
+[id^="secondary-nav-menu-"] li a {
+	display: flex;
+}
+
+[id^="secondary-nav-menu-"] li.separator {
+	box-shadow: 0 1px 0 0 rgba(255,255,255,0.2);
+	margin: 0 16px 8px;
+	padding: 4px 0 12px;
+}
+
+[id^="secondary-nav-menu-"] li:not(:first-child) {
+	font-size: 12px;
+}
+
+[id^="secondary-nav-menu-"] li:first-child {
+	align-items: flex-start;
+	display: flex;
+}
+
+[id^="secondary-nav-menu-"] li:first-child span {
+	margin-right: 8px;
+}
+
+[id^="secondary-nav-menu-"] li:first-child button {
+	margin: 0px -12px 0px auto;
+}
+
+[id^="secondary-nav-menu-"] li:first-child button svg {
+	height: 12px;
+	width: 12px;
+}
+
+[id^="secondary-nav-menu-"] li:first-child button:focus {
+	outline-offset: -2px;
+}
+
+.pinned [id^="secondary-nav-menu-"] li:first-child button svg [fill] {
+	fill: var(--color-button-chromeless-reverse-active);
+}
+
+#secondary-navigation a:hover,
+#secondary-navigation a:active {
+	color: 	var(--color-app-frame-links-text-hover);	
+}
+
+.subnav-list {
+	display: none;
+}
+
+.subnav-list.open {
+	display: block;
+}
+
+#secondary-navigation.pinned ~ main,
+#secondary-navigation.pinned + #app-header {
+	margin-left: 260px;
+}
+
+/* Resize handle in navigation panel */
+#secondary-navigation #button-resize {
+	border-width: 0;
+	bottom: 50%;
+	min-height: 16px;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	top: 50%;
+}
+
+#secondary-navigation #button-resize:focus {
+	outline-offset: -2px;
+}
+
+#secondary-navigation #button-resize:hover::after {
+	background: var(--color-app-frame-links-text-hover);
+	content: "";
+	height: 100vmax;
+	position: absolute;
+	right: 0;
+	width: 1px;
+}
+
+/* Counter */
+.counter {
+	position: relative;
+}
+
+.counter::after {
+	background: var(--color-app-frame-links-two);
+	border-radius: 8px;
+	color: var(--color-nav-primary-background);
+	content: attr(data-count);
+	display: block;
+	height: 16px;
+	position: absolute;
+	right: calc(50% - 16px);
+	top: -4px;
+	min-width: 16px;
+	text-align: center;
+}
+
+/* Buttons */
+/** BUTTON NORMALIZE
+* 1. Change the font styles in all browsers.
+* 2. Remove the margin in Firefox and Safari.
+* 3. Show the overflow in Edge.
+* 4. Remove the inheritance of text transform in Edge, Firefox, and IE.
+**/
+button {
+	font-family: inherit; /* 1 */
+	font-size: 100%; /* 1 */
+	line-height: 1.15; /* 1 */
+	margin: 0; /* 2 */
+	overflow: visible; /* 3 */
+	text-transform: none; /* 4 */
+}
+
+/**
+* Correct the inability to style clickable types in iOS and Safari.
+**/
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+	-webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+	outline: 1px dotted transparent;
+}
+
+/**
+* Button base and common styles
+**/
+button {
+	align-items: center;
+	border-radius: 2px;
+	border-style: solid;
+	border-width: 1px;
+	display: flex;
+	font-size: 12px;
+	font-weight: 600;
+	min-height: 24px;
+	justify-content: center;
+	padding: 4px 8px;
+}
+
+button:not([disabled]):hover {
+	cursor: pointer;
+}
+
+button:focus {
+	outline: 2px solid var(--color-focus-base);
+	outline-offset: 2px;
+}
+
+/**
+* Chromeless buttons
+**/
+[class^="button-chromeless"],
+[class^="button-chromeless"][disabled] {
+	background-color: transparent;
+	border-color: transparent;
+	box-shadow: none;
+}
+
+.button-chromeless-reverse {
+	color: var(--color-button-chromeless-reverse);
+}
+
+.button-chromeless-reverse svg [fill] {
+	fill: var(--color-button-chromeless-reverse);
+}
+
+.button-chromeless-reverse:not([disabled]):hover svg [fill] {
+	fill: var(--color-button-chromeless-reverse-hover);
+}
+
+.button-chromeless-reverse:not([disabled]):active svg [fill] {
+	fill: var(--color-button-chromeless-reverse-active);
+}
+
+/**
+* Icons in buttons
+**/
+button svg {
+	height: 16px;
+	margin: -2px 0;
+	width: 16px;
+}
+
+button svg + span,
+button span + svg {
+	margin-left: 8px;
+}
+
+.button-icon-only span { /* These properties visually hide the span; this could be a utility class or mixin. */
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+/* Primary navigation bar overflow
+* Most responsive behaviors are not included in this example.
+* Here, the max-height is 588px; this value needs to be based on the actual items in an application.
+* Besides just showing the More item, Help, Alerts, and Settings should be removed from the primary bar and displayed in the overflow menu. Other items from the top section also "move" to the overflow menu as height shrinks.
+* Another media query could be used for narrow screens to change the presentation of the primary and secondary menus.
+*/
+@media screen and (max-height:588px) {
+	#nav-item-more {
+		display: list-item;
+	}
+}
